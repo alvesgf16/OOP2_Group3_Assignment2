@@ -30,6 +30,12 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            <Label
+                Text=""
+                x:Name="airportExample" />
+            <Label
+                Text=""
+                x:Name="flightExample" />
         </VerticalStackLayout>
     </ScrollView>
 
