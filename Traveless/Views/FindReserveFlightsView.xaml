@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Traveless.Views.FindReserveFlightsView"
+             Title="FindReserveFlightsView">
+    <VerticalStackLayout Padding="25">
+        <Label Text="Flight Finder" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
+        <Grid ColumnSpan="4" RowSpan="2" ColumnDefinitions="300, 300, 300, 250" RowDefinitions="25, 50"
+              ColumnSpacing="10" RowSpacing="5">
+            <Label Grid.Column="0" Grid.Row="0" Text="From:"/>
+            <Label Grid.Column="1" Grid.Row="0" Text="To:"/>
+            <Label Grid.Column="2" Grid.Row="0" Text="Day:"/>
+            <Entry Grid.Column="0" Grid.Row="1" Placeholder="Any"/>
+            <Entry Grid.Column="1" Grid.Row="1" Placeholder="Any"/>
+            <Entry Grid.Column="2" Grid.Row="1" Placeholder="Any"/>
+            <Button Grid.Column="3" Grid.Row="1" Text="Find Flights"/>
+        </Grid>
+        <Label Text="Flights" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
+        <Frame HasShadow="True">
+            <ListView />
+        </Frame>
+
+        <Label Text="Reserve" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
+        
+        <Label Text="Flight Code:"/>
+        <Entry Placeholder="Flight" IsReadOnly="True"/>
+        
+        <Label Text="Airline:"/>
+        <Entry Placeholder="Airline" IsReadOnly="True"/>
+        
+        <Label Text="Day:"/>
+        <Entry Placeholder="Day" IsReadOnly="True"/>
+        
+        <Label Text="Time:"/>
+        <Entry Placeholder="Time" IsReadOnly="True"/>
+        
+        <Label Text="Cost:"/>
+        <Entry Placeholder="0" IsReadOnly="True"/>
+        
+        <Label Text="Name:"/>
+        <Entry Placeholder="Name"/>
+        
+        <Label Text="Citizenship:"/>
+        <Entry Placeholder="Citizenship"/>
+
+        <Button Text="Reserve" WidthRequest="250" Margin="10"/>
+    </VerticalStackLayout>
+</ContentPage>

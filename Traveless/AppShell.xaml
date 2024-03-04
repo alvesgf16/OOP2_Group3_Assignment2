@@ -3,13 +3,25 @@
     x:Class="Traveless.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Traveless"
-    Shell.FlyoutBehavior="Disabled"
-    Title="Traveless">
+    xmlns:local="clr-namespace:Traveless.Views"
+    Shell.FlyoutBehavior="Locked"
+    Title="Traveless"
+    FlyoutWidth="300"
+    FlyoutBackgroundColor="BlanchedAlmond">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+        ContentTemplate="{DataTemplate local:MainView}"
+        Route="MainView" />
+    
+    <FlyoutItem Title="Find &amp; Reserve Flights">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:FindReserveFlightsView}" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Find &amp; Update a Reservation">
+        <Tab>
+            <ShellContent ContentTemplate="{DataTemplate local:FindUpdateReservationView}" />
+        </Tab>
+    </FlyoutItem>
 </Shell>
