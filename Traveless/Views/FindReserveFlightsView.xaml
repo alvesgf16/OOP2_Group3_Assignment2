@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Traveless.Views.FindReserveFlightsView"
-             Title="FindReserveFlightsView">
+             >
     <VerticalStackLayout Padding="25">
         <Label Text="Flight Finder" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium"/>
         <Grid ColumnSpan="4" RowSpan="2" ColumnDefinitions="300, 300, 300, 250" RowDefinitions="25, 50"
@@ -44,5 +44,9 @@
         <Entry Placeholder="Citizenship"/>
 
         <Button Text="Reserve" WidthRequest="250" Margin="10"/>
+        <HorizontalStackLayout>
+            <Label Text="Reservation Code: " HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>
+            <Label Text="" VerticalOptions="Center" WidthRequest="50"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
