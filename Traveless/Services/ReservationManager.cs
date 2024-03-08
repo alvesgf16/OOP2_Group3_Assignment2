@@ -2,7 +2,7 @@
 
 namespace Traveless.Services;
 
-internal class ReservationManager
+public class ReservationManager
 {
     private readonly List<Airport> airports = [];
     private readonly List<Flight> flights = [];
@@ -38,7 +38,7 @@ internal class ReservationManager
         using var stream = FileSystem.OpenAppPackageFileAsync("flights.csv").Result;
         using var reader = new StreamReader(stream);
 
-        while (reader.ReadLine() != null)
+        while (reader.Peek() != -1)
         {
             var flightStr = reader.ReadLine()!;
             var flightData = flightStr.Split(",");
@@ -53,6 +53,21 @@ internal class ReservationManager
             double cost = double.Parse(flightData[7]);
 
             flights.Add(new Flight(flightCode, airlineName, originatingAirport, destination, day, time, seats, cost));
+
         }
+    }
+
+    public List<Flight> GetFlights()
+    {
+        return flights;
+    }
+
+    internal List<Flight> FindFlights(string originating, string destination, string day)
+    {
+        
+        return flights.Where(flight =>
+        flight.Originating.Trim().Equals(originating.Trim(), StringComparison.OrdinalIgnoreCase) &&
+        flight.Destination.Trim().Equals(destination.Trim(), StringComparison.OrdinalIgnoreCase) &&
+        flight.Day.Trim().Equals(day.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
     }
 }

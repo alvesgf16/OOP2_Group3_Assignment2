@@ -1,6 +1,6 @@
 ﻿namespace Traveless.Models;
 
-internal class Flight(string code,
+public class Flight(string code,
                       string airlineName,
                       string originating,
                       string destination,
