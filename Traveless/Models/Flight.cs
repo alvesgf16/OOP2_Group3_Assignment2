@@ -2,8 +2,8 @@
 
 internal class Flight(string code,
                       string airlineName,
-                      string originating,
-                      string destination,
+                      Airport originating,
+                      Airport destination,
                       string day,
                       string time,
                       int seats,
@@ -11,12 +11,12 @@ internal class Flight(string code,
 {
     public string Code { get; } = code;
     public string AirlineName { get; } = airlineName;
-    public string Originating { get; } = originating;
-    public string Destination { get; } = destination;
+    public Airport Originating { get; } = originating;
+    public Airport Destination { get; } = destination;
     public string Day { get; } = day;
     public string Time { get; } = time;
-    public int Seats { get; } = seats;
+    public int Seats { get; set; } = seats;
     public double Cost { get; } = cost;
 
-    public override string ToString() => $"{Code}, {AirlineName}, {Originating}, {Destination}, {Day}, {Time}, {Seats}, {Cost}";
+    public override string ToString() => $"{Code}, {AirlineName}, {Originating.Code}, {Destination.Code}, {Day}, {Time}, {Seats}, {Cost}";
 }
