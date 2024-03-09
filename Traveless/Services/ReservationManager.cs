@@ -3,7 +3,7 @@ using Traveless.Models;
 
 namespace Traveless.Services;
 
-internal class ReservationManager
+public class ReservationManager
 {
     private readonly List<Airport> airports = [];
     private readonly List<Flight> flights = [];
@@ -57,6 +57,7 @@ internal class ReservationManager
 
 
             flights.Add(new Flight(flightCode, airlineName, originatingAirport, destination, day, time, seats, cost));
+
         }
     }
 
@@ -83,5 +84,19 @@ internal class ReservationManager
         using FileStream stream = File.Open("reservations.bin", FileMode.Create);
         using BinaryWriter writer = new(stream, Encoding.UTF8, false);
         reservations.ForEach((reservation) => writer.Write(reservation.ToString()));
+    }
+
+    public List<Flight> GetFlights()
+    {
+        return flights;
+    }
+
+    internal List<Flight> FindFlights(string originating, string destination, string day)
+    {
+        
+        return flights.Where(flight =>
+        flight.Originating.Trim().Equals(originating.Trim(), StringComparison.OrdinalIgnoreCase) &&
+        flight.Destination.Trim().Equals(destination.Trim(), StringComparison.OrdinalIgnoreCase) &&
+        flight.Day.Trim().Equals(day.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
     }
 }
