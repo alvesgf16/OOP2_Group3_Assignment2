@@ -4,5 +4,7 @@
     {
         public string Code { get; } = code;
         public string FullName { get; } = fullName;
+
+        public override string ToString() => $"{Code}, {FullName}";
     }
 }
