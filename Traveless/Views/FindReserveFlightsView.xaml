@@ -24,19 +24,29 @@
         <Label Text="Reserve" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
         
         <Label Text="Flight Code:"/>
-        <Entry Placeholder="Flight" IsReadOnly="True"/>
+        <Entry Placeholder="Flight"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Code}"/>
         
         <Label Text="Airline:"/>
-        <Entry Placeholder="Airline" IsReadOnly="True"/>
+        <Entry Placeholder="Airline"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.AirlineName}"/>
         
         <Label Text="Day:"/>
-        <Entry Placeholder="Day" IsReadOnly="True"/>
+        <Entry Placeholder="Day"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Day}"/>
         
         <Label Text="Time:"/>
-        <Entry Placeholder="Time" IsReadOnly="True"/>
+        <Entry Placeholder="Time"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Time}"/>
         
         <Label Text="Cost:"/>
-        <Entry Placeholder="0" IsReadOnly="True"/>
+        <Entry Placeholder="0"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Cost}"/>
         
         <Label Text="Name:"/>
         <Entry Placeholder="Name"/>
