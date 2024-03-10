@@ -49,15 +49,15 @@
                Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Cost}"/>
         
         <Label Text="Name:"/>
-        <Entry Placeholder="Name"/>
+        <Entry x:Name="name" Placeholder="Name"/>
         
         <Label Text="Citizenship:"/>
-        <Entry Placeholder="Citizenship"/>
+        <Entry x:Name="citizenship" Placeholder="Citizenship"/>
 
-        <Button Text="Reserve" WidthRequest="250" Margin="10"/>
+        <Button Text="Reserve" WidthRequest="250" Margin="10" Clicked="ReserveButton_Clicked"/>
         <HorizontalStackLayout>
             <Label Text="Reservation Code: " HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>
-            <Label Text="" VerticalOptions="Center" WidthRequest="50"/>
+            <Label x:Name="reservationCode"  Text="" VerticalOptions="Center" WidthRequest="50"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
