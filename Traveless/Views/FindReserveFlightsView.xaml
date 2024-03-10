@@ -10,43 +10,54 @@
             <Label Grid.Column="0" Grid.Row="0" Text="From:"/>
             <Label Grid.Column="1" Grid.Row="0" Text="To:"/>
             <Label Grid.Column="2" Grid.Row="0" Text="Day:"/>
-            <Entry Grid.Column="0" Grid.Row="1" Placeholder="Any"/>
-            <Entry Grid.Column="1" Grid.Row="1" Placeholder="Any"/>
-            <Entry Grid.Column="2" Grid.Row="1" Placeholder="Any"/>
-            <Button Grid.Column="3" Grid.Row="1" Text="Find Flights"/>
+            <Entry x:Name="from" Grid.Column="0" Grid.Row="1" Placeholder="Any"/>
+            <Entry x:Name="to" Grid.Column="1" Grid.Row="1" Placeholder="Any"/>
+            <Entry x:Name="day" Grid.Column="2" Grid.Row="1" Placeholder="Any"/>
+            <Button Grid.Column="3" Grid.Row="1" Clicked="FindFlightsButton_Clicked" Text="Find Flights"/>
         </Grid>
         <Label Text="Flights" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
         <Frame HasShadow="True">
-            <ListView />
+            <Picker x:Name="listOfFlights"
+                    HeightRequest="60"/>
         </Frame>
 
         <Label Text="Reserve" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
         
         <Label Text="Flight Code:"/>
-        <Entry Placeholder="Flight" IsReadOnly="True"/>
+        <Entry Placeholder="Flight"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Code}"/>
         
         <Label Text="Airline:"/>
-        <Entry Placeholder="Airline" IsReadOnly="True"/>
+        <Entry Placeholder="Airline"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.AirlineName}"/>
         
         <Label Text="Day:"/>
-        <Entry Placeholder="Day" IsReadOnly="True"/>
+        <Entry Placeholder="Day"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Day}"/>
         
         <Label Text="Time:"/>
-        <Entry Placeholder="Time" IsReadOnly="True"/>
+        <Entry Placeholder="Time"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Time}"/>
         
         <Label Text="Cost:"/>
-        <Entry Placeholder="0" IsReadOnly="True"/>
+        <Entry Placeholder="0"
+               IsReadOnly="True"
+               Text="{Binding Source={x:Reference listOfFlights}, Path=SelectedItem.Cost}"/>
         
         <Label Text="Name:"/>
-        <Entry Placeholder="Name"/>
+        <Entry x:Name="name" Placeholder="Name"/>
         
         <Label Text="Citizenship:"/>
-        <Entry Placeholder="Citizenship"/>
+        <Entry x:Name="citizenship" Placeholder="Citizenship"/>
 
-        <Button Text="Reserve" WidthRequest="250" Margin="10"/>
+        <Button Text="Reserve" WidthRequest="250" Margin="10" Clicked="ReserveButton_Clicked"/>
         <HorizontalStackLayout>
             <Label Text="Reservation Code: " HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="150"/>
-            <Label Text="" VerticalOptions="Center" WidthRequest="50"/>
+            <Label x:Name="reservationCode"  Text="" VerticalOptions="Center" WidthRequest="50"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

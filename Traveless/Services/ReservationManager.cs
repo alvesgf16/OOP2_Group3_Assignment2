@@ -15,9 +15,6 @@ internal class ReservationManager
         PopulateFlights();
     }
 
-    internal List<Airport> Airports => airports;
-    internal List<Flight> Flights => flights;
-
     private void PopulateAirports()
     {
         using var stream = FileSystem.OpenAppPackageFileAsync("airports.csv").Result;
@@ -57,6 +54,7 @@ internal class ReservationManager
 
 
             flights.Add(new Flight(flightCode, airlineName, originatingAirport, destination, day, time, seats, cost));
+
         }
     }
 
@@ -80,8 +78,25 @@ internal class ReservationManager
 
     private void PersistReservations()
     {
-        using FileStream stream = File.Open("reservations.bin", FileMode.Create);
+        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "reservations.bin");
+        using FileStream stream = File.Open(path, FileMode.Create);
         using BinaryWriter writer = new(stream, Encoding.UTF8, false);
         reservations.ForEach((reservation) => writer.Write(reservation.ToString()));
+    }
+
+    public List<Flight> GetFlights()
+    {
+        return flights;
+    }
+
+    internal List<Flight> FindFlights(string originating, string destination, string day)
+    {
+        List<Flight> result = flights;
+
+        if (originating is not null) result = result.Where((flight) => flight.Originating.Code.Trim().Equals(originating.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+        if (destination is not null) result = result.Where((flight) => flight.Destination.Code.Trim().Equals(destination.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+        if (day is not null) result = result.Where((flight) => flight.Day.Trim().Equals(day.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+
+        return result;
     }
 }
