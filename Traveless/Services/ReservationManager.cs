@@ -3,7 +3,7 @@ using Traveless.Models;
 
 namespace Traveless.Services;
 
-public class ReservationManager
+internal class ReservationManager
 {
     private readonly List<Airport> airports = [];
     private readonly List<Flight> flights = [];
@@ -14,9 +14,6 @@ public class ReservationManager
         PopulateAirports();
         PopulateFlights();
     }
-
-    internal List<Airport> Airports => airports;
-    internal List<Flight> Flights => flights;
 
     private void PopulateAirports()
     {
@@ -93,10 +90,12 @@ public class ReservationManager
 
     internal List<Flight> FindFlights(string originating, string destination, string day)
     {
-        
-        return flights.Where(flight =>
-        flight.Originating.Trim().Equals(originating.Trim(), StringComparison.OrdinalIgnoreCase) &&
-        flight.Destination.Trim().Equals(destination.Trim(), StringComparison.OrdinalIgnoreCase) &&
-        flight.Day.Trim().Equals(day.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+        List<Flight> result = flights;
+
+        if (originating is not null) result = result.Where((flight) => flight.Originating.Code.Trim().Equals(originating.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+        if (destination is not null) result = result.Where((flight) => flight.Destination.Code.Trim().Equals(destination.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+        if (day is not null) result = result.Where((flight) => flight.Day.Trim().Equals(day.Trim(), StringComparison.OrdinalIgnoreCase)).ToList();
+
+        return result;
     }
 }
