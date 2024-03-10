@@ -11,7 +11,7 @@ public partial class FindReserveFlightsView : ContentPage
 		InitializeComponent();
 	}
 
-    private ReservationManager reservationManager { get; } = new ReservationManager();
+    private ReservationManager ReservationManager { get; } = new ReservationManager();
 
 
 
@@ -19,12 +19,10 @@ public partial class FindReserveFlightsView : ContentPage
 	{
 
         //var flights = new ObservableCollection<Flight>(reservationManager.FindFlights(from.Text, to.Text, day.Text));
-        var flights = new ObservableCollection<Flight>(reservationManager.FindFlights(from.Text, to.Text, day.Text));
+        var flights = new ObservableCollection<Flight>(ReservationManager.FindFlights(from.Text, to.Text, day.Text));
         listOfFlights.ItemsSource = flights;
-        System.Diagnostics.Debug.WriteLine(from.Text);
-        System.Diagnostics.Debug.WriteLine(to.Text);
-        System.Diagnostics.Debug.WriteLine(day.Text);
-        System.Diagnostics.Debug.WriteLine(flights.Count());
+        listOfFlights.SelectedIndex = 0;
+    }
 
         
     }

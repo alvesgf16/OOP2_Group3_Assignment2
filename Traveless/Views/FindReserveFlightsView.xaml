@@ -17,16 +17,8 @@
         </Grid>
         <Label Text="Flights" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
         <Frame HasShadow="True">
-            <ListView x:Name="listOfFlights" 
-                      RowHeight="60">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Code}"
-                                  Detail="{Binding Originating}">
-                        </TextCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Picker x:Name="listOfFlights"
+                    HeightRequest="60"/>
         </Frame>
 
         <Label Text="Reserve" VerticalOptions="Center" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Padding="25"/>
