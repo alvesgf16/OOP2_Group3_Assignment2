@@ -78,7 +78,8 @@ internal class ReservationManager
 
     private void PersistReservations()
     {
-        using FileStream stream = File.Open("reservations.bin", FileMode.Create);
+        string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "reservations.bin");
+        using FileStream stream = File.Open(path, FileMode.Create);
         using BinaryWriter writer = new(stream, Encoding.UTF8, false);
         reservations.ForEach((reservation) => writer.Write(reservation.ToString()));
     }
